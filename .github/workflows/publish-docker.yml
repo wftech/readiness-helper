@@ -29,15 +29,10 @@ jobs:
           VERSION=$(date +"0.%Y%m%d%H%M")
           echo "version=$VERSION" >> $GITHUB_ENV
 
-      - name: Build and Push Docker Image
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          file: ./Containerfile
-          platforms: linux/amd64,linux/arm64
-          push: true
-          tags: |
-            edelstadt/readiness-probe:${{ env.version }}
+      - name: 'Build'
+        run: |
+          docker build . --tag ghcr.io/edelstadt/readiness-probe:${{ env.version }}
+          docker push ghcr.io/edelstadt/readiness-probe:${{ env.version }}
 
       - name: Show Image Digest
         run: |
