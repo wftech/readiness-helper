@@ -33,6 +33,7 @@ jobs:
         run: |
           docker build . --tag ghcr.io/edelstadt/readiness-probe:${{ env.version }} -f Containerfile
           docker push ghcr.io/edelstadt/readiness-probe:${{ env.version }}
+          docker tag ghcr.io/edelstadt/readiness-probe:${{ env.version }} ghcr.io/edelstadt/readiness-probe:latest
 
       - name: Show Image Digest
         run: |
