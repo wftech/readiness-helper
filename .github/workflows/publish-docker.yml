@@ -37,7 +37,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            {{ $GITHUB_REPOSITORY }}/readiness-probe:${{ env.version }}
+            edelstadt/readiness-probe:${{ env.version }}
 
       - name: Show Image Digest
         run: |
