@@ -30,15 +30,14 @@ jobs:
           echo "version=$VERSION" >> $GITHUB_ENV
 
       - name: Build and Push Docker Image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: .
           file: ./Containerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}/readiness-probe:latest
-            ghcr.io/${{ github.repository }}/readiness-probe:${{ env.version }}
+            {{ github.repository }}/readiness-probe:${{ env.version }}
 
       - name: Show Image Digest
         run: |
